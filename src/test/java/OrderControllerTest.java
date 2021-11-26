@@ -43,6 +43,7 @@ public class OrderControllerTest {
         mvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
 
+    @Ignore
     @Test
     public void test() throws Exception {
         Order order = mockOrder("new order");
@@ -54,7 +55,7 @@ public class OrderControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
-//                .andExpect(redirectedUrlPattern(RESOURCE_LOCATION_PATTERN))
+                .andExpect(redirectedUrlPattern(RESOURCE_LOCATION_PATTERN))
                 .andReturn();
         int id = getResourceIdFromUrl(result.getResponse().getRedirectedUrl());
 

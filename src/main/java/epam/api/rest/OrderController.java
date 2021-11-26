@@ -57,6 +57,8 @@ public class OrderController extends AbstractRestHandler {
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.exchange( webServer2Url, HttpMethod.POST, entity, String.class).getBody();
+
+        response.setHeader("Location", request.getRequestURL().append("/").append(order.getOrderId() + 1).toString());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {"application/json"})
