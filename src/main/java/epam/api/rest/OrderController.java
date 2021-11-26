@@ -29,6 +29,15 @@ public class OrderController extends AbstractRestHandler {
     @Autowired
     private OrderService orderService;
 
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = {"application/json"})
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Get all the records.")
+    public
+    @ResponseBody
+    ArrayList<Order> getAllOrders(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return this.orderService.getAllOrders();
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {"application/json"})
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Get a single order.")
