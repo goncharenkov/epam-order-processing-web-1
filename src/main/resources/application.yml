@@ -1,30 +1,18 @@
-### This is the main way to configure the application (other than annotations).
-### This file is in Yaml format but you can also configure spring boot using the traditional
-### Java properties file format. 
-
 spring.jmx:
   enabled: false
-
-# TODO: remove from pom.xml
-#spring.datasource:
-#  driverClassName: org.h2.Driver
-#  url: jdbc:h2:mem:bootexample;MODE=MySQL
 
 server:
   port: 8092
 
-#todo: make sure to always enable security in production
 security:
   basic:
     enabled: false
 
-#management endpoints on a separate port
 management:
   port: 8093
   security:
-    enabled: false # management port is internal only. no need to secure it.
+    enabled: false
 
-#default project info followed by actual injected pom-specified values.
 project:
   name: web-service-1
   version: 0.1
@@ -51,7 +39,7 @@ spring:
   jpa:
     hibernate:
       dialect: org.hibernate.dialect.MySQLInnoDBDialect
-      ddl-auto: update # todo: in non-dev environments, comment this out:
+      ddl-auto: update
 
 order.service:
   name: 'test profile:'
