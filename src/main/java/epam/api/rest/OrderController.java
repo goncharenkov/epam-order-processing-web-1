@@ -70,6 +70,27 @@ public class OrderController extends AbstractRestHandler {
         response.setHeader("Location", request.getRequestURL().append("/").append(order.getOrderId() + 1).toString());
     }
 
+    @RequestMapping(value = "", method = RequestMethod.PUT, consumes = {"application/json"}, produces = {"application/json"})
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Update an order.")
+    public void sendOrder(@RequestBody Order order, HttpServletRequest request, HttpServletResponse response) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name", order.getName());
+        jsonObject.put("description", order.getDescription());
+        jsonObject.put("isSent", true);
+
+        HttpEntity<JSONObject> entity = new HttpEntity<JSONObject>(jsonObject, headers);
+
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.exchange( webServer2Url, HttpMethod.PUT, entity, String.class).getBody();
+
+        response.setHeader("Location", request.getRequestURL().append("/").append(order.getOrderId()).toString());
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Delete an order.")

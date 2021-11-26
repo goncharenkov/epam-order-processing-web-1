@@ -51,6 +51,14 @@ public class Order {
         return description;
     }
 
+    public void setProducts(int productId) {
+        this.products = null;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
     @Override
     public String toString() {
         return "Order { " +
