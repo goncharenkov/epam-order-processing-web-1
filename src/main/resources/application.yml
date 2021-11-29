@@ -30,16 +30,5 @@ order.service:
 spring:
   profiles: mysql
 
-  datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost/orders
-    username: admin
-    password: password
-
-  jpa:
-    hibernate:
-      dialect: org.hibernate.dialect.MySQLInnoDBDialect
-      ddl-auto: update
-
 order.service:
   name: 'test profile:'

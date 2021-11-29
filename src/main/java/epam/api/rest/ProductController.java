@@ -1,12 +1,10 @@
 package epam.api.rest;
 
 import epam.domain.Product;
-import epam.service.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import net.minidev.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -20,20 +18,6 @@ import java.util.Arrays;
 @Api(tags = {"product"})
 public class ProductController extends AbstractRestHandler {
     private static final String webServer2Url = "http://localhost:8090/epam/v1/products/";
-
-    @Autowired
-    private ProductService productService;
-
-    @RequestMapping(value = "/{orderId}", method = RequestMethod.GET, produces = {"application/json"})
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Get a single product")
-    public
-    @ResponseBody
-    Product getProduct(@ApiParam(value = "The ID of the product.", required = true)
-                       @PathVariable("orderId") int orderId,
-                       HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return this.productService.getProduct(orderId);
-    }
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = {"application/json"}, produces = {"application/json"})
     @ResponseStatus(HttpStatus.CREATED)
